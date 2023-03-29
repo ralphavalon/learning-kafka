@@ -30,6 +30,12 @@ services:
     extra_hosts:
       - "moby:127.0.0.1"
 
+  project-backend:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
 networks:
   default:
     external: true

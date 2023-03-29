@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class SampleEventListener implements ConsumerSeekAware {
 
     @KafkaListener(topics = "Samples")
-    public void process(String message) {
+    public void process(SampleObject sample) {
         System.out.println("Message found.");
-        System.out.println(message);
+        System.out.println(sample);
     }
     
 }

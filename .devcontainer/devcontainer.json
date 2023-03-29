@@ -2,6 +2,10 @@
   "name": "Learning Kafka",
   "dockerFile": "Dockerfile",
   // Add the IDs of extensions you want installed when the container is created.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "java.home": "/usr/local/openjdk-15"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
