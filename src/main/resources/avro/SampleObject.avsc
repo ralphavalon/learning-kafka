@@ -1,0 +1,11 @@
+{
+  "namespace": "com.demo.project.listener",
+  "type": "record",
+  "name": "SampleObject",
+  "fields": [
+    {
+      "name": "property",
+      "type": "string"
+    }
+  ]
+}

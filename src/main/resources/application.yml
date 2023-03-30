@@ -1,19 +1,18 @@
+kafka:
+  topic:
+    name: Samples
+
 spring:
   kafka:
     bootstrap-servers: kafka:9092
     consumer:
       group-id: anything
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      properties:
-        spring:
-          json:
-            trusted:
-              packages: '*'
-            value:
-              default:
-                type: 'com.demo.project.listener.SampleObject'
-          deserializer:
-            value:
-              delegate:
-                class: org.springframework.kafka.support.serializer.JsonDeserializer
+      # Deserializer config is on DemoApplication.java, because it needs a different constructor
+      # key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # value-deserializer: com.demo.project.deserializer.CustomAvroDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.demo.project.serializer.CustomAvroSerializer
+
+server:
+  port: 8080
