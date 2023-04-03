@@ -5,14 +5,19 @@ kafka:
 spring:
   kafka:
     bootstrap-servers: kafka:9092
+    properties:
+      schema.registry.url: http://schema-registry:8081
+      specific.avro.reader: true
+      # auto.register.schemas: false # It's true by default but it shouldn't be true for production
     consumer:
       group-id: anything
       # Deserializer config is on DemoApplication.java, because it needs a different constructor
-      # key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      # value-deserializer: com.demo.project.deserializer.CustomAvroDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: com.demo.project.serializer.CustomAvroSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
 
 server:
   port: 8080
